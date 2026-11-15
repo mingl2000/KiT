@@ -17,6 +17,8 @@ dependencies = [
 [project.optional-dependencies]
 # only to download CSI500 for eval/backtest.py
 backtest = ["akshare"]
+# only for scripts/download_yahoo_ashare.py
+yahoo = ["yfinance"]
 
 [dependency-groups]
 # `hf` CLI for downloading the checkpoint and demo data

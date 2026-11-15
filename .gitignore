@@ -1,6 +1,7 @@
 
 /data/*
 !/data/README.md
+/data_yahoo/
 /ckpt/*
 !/ckpt/README.md
 
@@ -13,3 +14,4 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .vscode/
+results/
