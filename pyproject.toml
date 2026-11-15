@@ -1,0 +1,40 @@
+[project]
+name = "kit"
+version = "0.1.0"
+description = "KiT: multi-horizon candlestick forecasting via flow matching"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.13"
+dependencies = [
+    "torch>=2.4",
+    "numpy",
+    "pandas",
+    "pyarrow",
+    "matplotlib", # plots written by eval/infer_for_pred.py and eval/backtest.py
+    "huggingface-hub>=2.4.0",
+]
+
+[project.optional-dependencies]
+# only to download CSI500 for eval/backtest.py
+backtest = ["akshare"]
+
+[dependency-groups]
+# `hf` CLI for downloading the checkpoint and demo data
+dev = ["huggingface_hub"]
+
+[tool.uv]
+# The repo is run as scripts (eval/*.py add the repo root to sys.path),
+# so there is nothing to build or install.
+package = false
+
+# CUDA wheels of PyTorch on Linux/Windows; macOS uses the default PyPI build.
+# To use a different CUDA version, change the index URL below (e.g. cu128).
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cu126", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
